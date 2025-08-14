@@ -3,6 +3,7 @@ package com.example.quizapp.controller;
 import com.example.quizapp.model.Question;
 import com.example.quizapp.model.Student;
 import com.example.quizapp.model.Submission;
+import com.example.quizapp.model.Teacher;
 import com.example.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,15 @@ public class QuizController {
 
     @Autowired
     private QuizService quizService;
+
+    @PostMapping("/teacher/login")
+    public ResponseEntity<Teacher> teacherLogin(@RequestBody Map<String, String> payload) {
+        String username = payload.get("username");
+        String password = payload.get("password");
+        Optional<Teacher> teacher = quizService.teacherLogin(username, password);
+        return teacher.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+    }
 
     @PostMapping("/login")
     public ResponseEntity<Student> login(@RequestBody Map<String, String> payload) {

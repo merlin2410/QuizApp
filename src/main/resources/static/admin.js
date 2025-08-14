@@ -1,7 +1,20 @@
-document.getElementById('add-student-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    const teacher = JSON.parse(sessionStorage.getItem('teacher'));
+    if (!teacher) {
+        window.location.href = 'teacher_login.html';
+        return;
+    }
 
-    const name = document.getElementById('name').value;
+    document.getElementById('logout-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        sessionStorage.removeItem('teacher');
+        window.location.href = 'teacher_login.html';
+    });
+
+    document.getElementById('add-student-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
     const rollNumber = document.getElementById('rollNumber').value;
     const successMessage = document.getElementById('success-message');
 
@@ -23,5 +36,6 @@ document.getElementById('add-student-form').addEventListener('submit', function(
     .catch(error => {
         successMessage.textContent = error.message;
         successMessage.classList.add('error');
+    });
     });
 });

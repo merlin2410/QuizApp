@@ -16,3 +16,7 @@ INSERT INTO quiz_option (option_text, is_correct, question_id) VALUES ('Berlin',
 INSERT INTO quiz_option (option_text, is_correct, question_id) VALUES ('H2O', true, 2);
 INSERT INTO quiz_option (option_text, is_correct, question_id) VALUES ('CO2', false, 2);
 INSERT INTO quiz_option (option_text, is_correct, question_id) VALUES ('NaCl', false, 2);
+
+-- Insert a default teacher (password is 'password')
+-- In a real application, you would use a hashed password.
+INSERT INTO teacher (username, password) VALUES ('admin', 'password');
