@@ -11,6 +11,7 @@ public class QuizOption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(columnDefinition = "TEXT")
     private String optionText;
 
     private boolean isCorrect;

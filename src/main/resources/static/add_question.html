@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Question - Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="admin.html">Add Student</a> |
+            <a href="results.html">View Results</a> |
+            <a href="add_question.html">Add Question</a> |
+            <a href="#" id="logout-link">Logout</a>
+        </nav>
+        <h1>Add New Question</h1>
+        <form id="add-question-form">
+            <label for="questionText">Question Text (supports LaTeX):</label>
+            <textarea id="questionText" name="questionText" rows="3" required></textarea>
+
+            <label for="figureUrl">Figure URL (optional):</label>
+            <input type="text" id="figureUrl" name="figureUrl">
+
+            <div id="options-container">
+                <label>Options (supports LaTeX):</label>
+                <div class="option">
+                    <textarea name="optionText" rows="2" required></textarea>
+                    <label><input type="radio" name="isCorrect" value="0" required> Correct</label>
+                </div>
+                <div class="option">
+                    <textarea name="optionText" rows="2" required></textarea>
+                    <label><input type="radio" name="isCorrect" value="1"> Correct</label>
+                </div>
+                <div class="option">
+                    <textarea name="optionText" rows="2" required></textarea>
+                    <label><input type="radio" name="isCorrect" value="2"> Correct</label>
+                </div>
+                <div class="option">
+                    <textarea name="optionText" rows="2" required></textarea>
+                    <label><input type="radio" name="isCorrect" value="3"> Correct</label>
+                </div>
+            </div>
+
+            <button type="submit">Add Question</button>
+        </form>
+        <p id="success-message" class="success"></p>
+    </div>
+    <script src="add_question.js"></script>
+</body>
+</html>

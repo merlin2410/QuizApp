@@ -139,3 +139,25 @@ tbody tr:nth-child(odd) {
 .question input[type="radio"] {
     margin-right: 10px;
 }
+
+textarea {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#options-container .option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#options-container .option textarea {
+    flex-grow: 1;
+    margin-right: 1rem;
+    margin-bottom: 0;
+}

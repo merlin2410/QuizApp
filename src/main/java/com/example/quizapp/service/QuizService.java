@@ -56,4 +56,12 @@ public class QuizService {
     public Student addStudent(Student student) {
         return studentRepository.save(student);
     }
+
+    public Question addQuestion(Question question) {
+        // To ensure the relationship is set correctly
+        if (question.getOptions() != null) {
+            question.getOptions().forEach(option -> option.setQuestion(question));
+        }
+        return questionRepository.save(question);
+    }
 }

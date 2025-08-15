@@ -58,4 +58,9 @@ public class QuizController {
     public Student addStudent(@RequestBody Student student) {
         return quizService.addStudent(student);
     }
+
+    @PostMapping("/questions")
+    public Question addQuestion(@RequestBody Question question) {
+        return quizService.addQuestion(question);
+    }
 }

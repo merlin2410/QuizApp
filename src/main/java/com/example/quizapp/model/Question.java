@@ -10,7 +10,10 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(columnDefinition = "TEXT")
     private String questionText;
+
+    private String figureUrl;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<QuizOption> options;
@@ -30,6 +33,14 @@ public class Question {
 
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
+    }
+
+    public String getFigureUrl() {
+        return figureUrl;
+    }
+
+    public void setFigureUrl(String figureUrl) {
+        this.figureUrl = figureUrl;
     }
 
     public List<QuizOption> getOptions() {
