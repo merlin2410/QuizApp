@@ -11,12 +11,31 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'teacher_login.html';
     });
 
-    document.getElementById('add-question-form').addEventListener('submit', function(event) {
+    const quizSelect = document.getElementById('quiz-select');
+    const addQuestionForm = document.getElementById('add-question-form');
+    const successMessage = document.getElementById('success-message');
+
+    function fetchQuizzes() {
+        fetch('/api/quizzes')
+            .then(response => response.json())
+            .then(quizzes => {
+                quizzes.forEach(quiz => {
+                    const option = document.createElement('option');
+                    option.value = quiz.id;
+                    option.textContent = quiz.title;
+                    quizSelect.appendChild(option);
+                });
+            });
+    }
+
+    addQuestionForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
+        const quizId = quizSelect.value;
         const questionText = document.getElementById('questionText').value;
         const figureUrl = document.getElementById('figureUrl').value;
-        const successMessage = document.getElementById('success-message');
+        const marks = document.getElementById('marks').value;
+        const timeLimit = document.getElementById('timeLimit').value;
 
         const options = [];
         const optionElements = document.querySelectorAll('.option');
@@ -33,10 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const question = {
             questionText: questionText,
             figureUrl: figureUrl,
+            marks: parseInt(marks),
+            timeLimit: timeLimit ? parseInt(timeLimit) : null,
             options: options
         };
 
-        fetch('/api/questions', {
+        fetch(`/api/quizzes/${quizId}/questions`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => {
             if (response.ok) {
                 successMessage.textContent = 'Question added successfully!';
-                document.getElementById('add-question-form').reset();
+                addQuestionForm.reset();
             } else {
                 throw new Error('Failed to add question');
             }
@@ -56,4 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
             successMessage.classList.add('error');
         });
     });
+
+    fetchQuizzes();
 });

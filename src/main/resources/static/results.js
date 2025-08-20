@@ -11,24 +11,50 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'teacher_login.html';
     });
 
+    const quizSelect = document.getElementById('quiz-select-results');
     const resultsBody = document.getElementById('results-body');
 
-    fetch('/api/results')
-        .then(response => response.json())
-        .then(submissions => {
-            if (submissions.length === 0) {
-                resultsBody.innerHTML = '<tr><td colspan="4">No submissions yet.</td></tr>';
-                return;
-            }
-            submissions.forEach(submission => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${submission.student.name}</td>
-                    <td>${submission.student.rollNumber}</td>
-                    <td>${submission.questionId}</td>
-                    <td>${submission.selectedOptionId}</td>
-                `;
-                resultsBody.appendChild(row);
+    function fetchQuizzes() {
+        fetch('/api/quizzes')
+            .then(response => response.json())
+            .then(quizzes => {
+                quizzes.forEach(quiz => {
+                    const option = document.createElement('option');
+                    option.value = quiz.id;
+                    option.textContent = quiz.title;
+                    quizSelect.appendChild(option);
+                });
+                // Fetch results for the first quiz by default
+                if (quizzes.length > 0) {
+                    fetchResults(quizzes[0].id);
+                }
             });
-        });
+    }
+
+    function fetchResults(quizId) {
+        fetch(`/api/quizzes/${quizId}/results`)
+            .then(response => response.json())
+            .then(results => {
+                resultsBody.innerHTML = '';
+                if (results.length === 0) {
+                    resultsBody.innerHTML = '<tr><td colspan="3">No results for this quiz yet.</td></tr>';
+                    return;
+                }
+                results.forEach(result => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${result.studentName}</td>
+                        <td>${result.rollNumber}</td>
+                        <td>${result.totalMarks}</td>
+                    `;
+                    resultsBody.appendChild(row);
+                });
+            });
+    }
+
+    quizSelect.addEventListener('change', function() {
+        fetchResults(this.value);
+    });
+
+    fetchQuizzes();
 });

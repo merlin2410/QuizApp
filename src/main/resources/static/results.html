@@ -11,24 +11,25 @@
             <a href="admin.html">Add Student</a> |
             <a href="results.html">View Results</a> |
             <a href="add_question.html">Add Question</a> |
+            <a href="quiz_settings.html">Quiz Settings</a> |
             <a href="#" id="logout-link">Logout</a>
         </nav>
         <h1>Quiz Results</h1>
+        <div id="quiz-selection-container">
+            <label for="quiz-select-results">Select Quiz to View Results:</label>
+            <select id="quiz-select-results"></select>
+        </div>
         <table id="results-table">
             <thead>
                 <tr>
                     <th>Student Name</th>
                     <th>Roll Number</th>
-                    <th>Question ID</th>
-                    <th>Selected Option ID</th>
+                    <th>Total Marks</th>
                 </tr>
             </thead>
             <tbody id="results-body">
             </tbody>
         </table>
-        <div style="text-align: center; margin-top: 1rem;">
-            <a href="login.html">Go to Student Login</a>
-        </div>
     </div>
     <script src="results.js"></script>
 </body>

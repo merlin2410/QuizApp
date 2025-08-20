@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <title>Quiz - Quiz App</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Quiz</h1>
-        <div id="quiz-container"></div>
-        <button id="submit-quiz">Submit Quiz</button>
+        <div id="quiz-header">
+            <h1 id="quiz-title-main"></h1>
+            <div id="timer"></div>
+        </div>
+        <div id="question-container">
+            <!-- Question will be rendered here by JavaScript -->
+        </div>
+        <div id="navigation-container">
+            <button id="prev-btn">Previous</button>
+            <button id="next-btn">Next</button>
+            <button id="submit-btn">Submit Quiz</button>
+        </div>
+        <div id="question-nav-container">
+            <!-- Question navigation links will be rendered here -->
+        </div>
     </div>
     <script src="quiz.js"></script>
 </body>

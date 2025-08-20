@@ -161,3 +161,41 @@ textarea {
     margin-right: 1rem;
     margin-bottom: 0;
 }
+
+#quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+#navigation-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+#question-nav-container {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.question-nav-link {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 2px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.question-nav-link.active {
+    background-color: #337ab7;
+    color: #fff;
+}

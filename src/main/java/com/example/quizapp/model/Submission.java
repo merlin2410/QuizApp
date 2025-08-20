@@ -12,9 +12,14 @@ public class Submission {
     @ManyToOne
     private Student student;
 
+    @ManyToOne
+    private Quiz quiz;
+
     private Long questionId;
 
     private Long selectedOptionId;
+
+    private Integer marksAwarded;
 
     // Getters and setters
     public Long getId() {
@@ -47,5 +52,21 @@ public class Submission {
 
     public void setSelectedOptionId(Long selectedOptionId) {
         this.selectedOptionId = selectedOptionId;
+    }
+
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
+
+    public Integer getMarksAwarded() {
+        return marksAwarded;
+    }
+
+    public void setMarksAwarded(Integer marksAwarded) {
+        this.marksAwarded = marksAwarded;
     }
 }

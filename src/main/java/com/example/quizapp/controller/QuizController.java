@@ -1,9 +1,8 @@
 package com.example.quizapp.controller;
 
 import com.example.quizapp.model.Question;
-import com.example.quizapp.model.Student;
-import com.example.quizapp.model.Submission;
-import com.example.quizapp.model.Teacher;
+import com.example.quizapp.dto.StudentResult;
+import com.example.quizapp.model.*;
 import com.example.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,8 +58,30 @@ public class QuizController {
         return quizService.addStudent(student);
     }
 
-    @PostMapping("/questions")
-    public Question addQuestion(@RequestBody Question question) {
-        return quizService.addQuestion(question);
+    @PostMapping("/quizzes/{quizId}/questions")
+    public Question addQuestionToQuiz(@PathVariable Long quizId, @RequestBody Question question) {
+        return quizService.addQuestionToQuiz(quizId, question);
+    }
+
+    @PostMapping("/quizzes")
+    public Quiz createQuiz(@RequestBody Quiz quiz) {
+        return quizService.createQuiz(quiz);
+    }
+
+    @GetMapping("/quizzes")
+    public List<Quiz> getAllQuizzes() {
+        return quizService.getAllQuizzes();
+    }
+
+    @GetMapping("/quizzes/{id}")
+    public ResponseEntity<Quiz> getQuizById(@PathVariable Long id) {
+        return quizService.getQuizById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/quizzes/{id}/results")
+    public List<StudentResult> getQuizResults(@PathVariable Long id) {
+        return quizService.getQuizResults(id);
     }
 }

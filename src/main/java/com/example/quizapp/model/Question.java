@@ -15,6 +15,10 @@ public class Question {
 
     private String figureUrl;
 
+    private Integer marks = 1; // Default marks
+
+    private Integer timeLimit; // in seconds, optional
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<QuizOption> options;
 
@@ -41,6 +45,22 @@ public class Question {
 
     public void setFigureUrl(String figureUrl) {
         this.figureUrl = figureUrl;
+    }
+
+    public Integer getMarks() {
+        return marks;
+    }
+
+    public void setMarks(Integer marks) {
+        this.marks = marks;
+    }
+
+    public Integer getTimeLimit() {
+        return timeLimit;
+    }
+
+    public void setTimeLimit(Integer timeLimit) {
+        this.timeLimit = timeLimit;
     }
 
     public List<QuizOption> getOptions() {

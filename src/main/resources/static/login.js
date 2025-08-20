@@ -20,7 +20,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     })
     .then(student => {
         sessionStorage.setItem('student', JSON.stringify(student));
-        window.location.href = 'quiz.html';
+        window.location.href = 'select_quiz.html';
     })
     .catch(error => {
         errorMessage.textContent = error.message;

@@ -13,15 +13,25 @@
             <a href="admin.html">Add Student</a> |
             <a href="results.html">View Results</a> |
             <a href="add_question.html">Add Question</a> |
+            <a href="quiz_settings.html">Quiz Settings</a> |
             <a href="#" id="logout-link">Logout</a>
         </nav>
         <h1>Add New Question</h1>
         <form id="add-question-form">
+            <label for="quiz-select">Select Quiz:</label>
+            <select id="quiz-select" name="quizId" required></select>
+
             <label for="questionText">Question Text (supports LaTeX):</label>
             <textarea id="questionText" name="questionText" rows="3" required></textarea>
 
             <label for="figureUrl">Figure URL (optional):</label>
             <input type="text" id="figureUrl" name="figureUrl">
+
+            <label for="marks">Marks:</label>
+            <input type="number" id="marks" name="marks" min="1" value="1" required>
+
+            <label for="timeLimit">Time Limit (seconds, optional):</label>
+            <input type="number" id="timeLimit" name="timeLimit" min="1">
 
             <div id="options-container">
                 <label>Options (supports LaTeX):</label>
